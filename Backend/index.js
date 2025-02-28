@@ -3,12 +3,14 @@ const cookies=require('cookie-parser')
 const { connection } = require('./config/db.connection')
 const { productRouter } = require('./routes/product.route')
 const { userRouter } = require('./routes/user.route')
+const cors=require('cors')
 require('dotenv').config()
 
 
 const app=express()
 app.use(express.json())
 app.use(cookies())
+app.use(cors())
 const PORT=process.env.PORT || 8080
 
 
