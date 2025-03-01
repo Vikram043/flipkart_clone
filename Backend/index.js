@@ -4,6 +4,7 @@ const { connection } = require('./config/db.connection')
 const { productRouter } = require('./routes/product.route')
 const { userRouter } = require('./routes/user.route')
 const cors=require('cors')
+const { paymentRouter } = require('./routes/order.router')
 require('dotenv').config()
 
 
@@ -20,7 +21,7 @@ app.get('/',async(req,res)=>{
 
 app.use('/api',productRouter)
 app.use('/api',userRouter)
-
+app.use('/api',paymentRouter)
 
 
 app.listen(PORT,async()=>{
