@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: ./Backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./Backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./Backend/.env 
+    depends_on:
+      - database
+
+  frontend:
+    build: ./Client
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
